@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safety Quiz Competition 2026-27 - Firozpur Division</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 90vh;
+        }
+        .quiz-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            max-width: 700px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+        }
+        
+        /* Language Selector Styling */
+        .lang-container {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            z-index: 10;
+        }
+        .lang-btn {
+            background-color: #f8f9fa;
+            border: 1px solid #ccc;
+            padding: 5px 10px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #333;
+            transition: all 0.2s;
+        }
+        .lang-btn.active {
+            background-color: #003366;
+            color: white;
+            border-color: #003366;
+        }
+        .lang-btn:first-child {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-right: none;
+        }
+        .lang-btn:last-child {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        .railway-logo {
+            width: 130px;
+            height: 130px;
+            margin: 10px auto 20px auto;
+            display: block;
+            object-fit: contain;
+        }
+        h1, h2, h3 {
+            color: #003366;
+            margin: 10px 0;
+        }
+        .division-text {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .form-group {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+        .timer {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #d9534f;
+            background-color: #fce8e6;
+            padding: 6px 12px;
+            border-radius: 4px;
+            border: 1px solid #f5c2c7;
+        }
+        .question {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            text-align: left;
+            font-weight: bold;
+            color: #222;
+        }
+        .options {
+            list-style-type: none;
+            padding: 0;
+        }
+        .options li {
+            margin-bottom: 10px;
+        }
+        .options button {
+            width: 100%;
+            padding: 12px;
+            font-size: 1rem;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-align: left;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .options button:hover:not(:disabled) {
+            background-color: #e2e6ea;
+        }
+        .options button:disabled {
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+        .options button.selected {
+            background-color: #d1ecf1;
+            border-color: #bee5eb;
+            color: #0c5460;
+            font-weight: bold;
+        }
+        .action-btn {
+            display: inline-block;
+            width: 100%;
+            padding: 14px;
+            font-size: 1.1rem;
+            background-color: #003366;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .action-btn:hover {
+            background-color: #002244;
+        }
+        .admin-link {
+            display: inline-block;
+            margin-top: 25px;
+            color: #003366;
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #003366;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    
+    <!-- Language Toggle Options -->
+    <div class="lang-container" id="lang-switcher">
+        <button class="lang-btn active" id="lang-en-btn" onclick="switchLanguage('en')">English</button><button class="lang-btn" id="lang-hi-btn" onclick="switchLanguage('hi')">हिंदी</button>
+    </div>
+    
+    <!-- PAGE 1: START SCREEN -->
+    <div id="start-page">
+        <img class="railway-logo" src="https://upload.wikimedia.org/wikipedia/en/b/be/Indian_Railways.png" alt="Indian Railways Logo">
+        <h1 id="main-title">Safety Quiz Competition 2026-27</h1>
+        <div class="division-text" id="main-sub">Operating Department | Firozpur Division</div>
+        <button class="action-btn" id="start-btn">Proceed to Registration</button>
+        <div class="admin-link" id="go-admin-btn">Admin Dashboard (Password Protected)</div>
+    </div>
+
+    <!-- PAGE 2: REGISTRATION FORM -->
+    <div id="reg-page" class="hidden">
+        <img class="railway-logo" src="https://upload.wikimedia.org/wikipedia/en/b/be/Indian_Railways.png" alt="Indian Railways Logo">
+        <h2 id="reg-title">Staff Registration</h2>
+        <div class="division-text" id="reg-sub">All fields are mandatory to start the 30-min exam</div>
+        
+        <form id="quiz-form">
+            <div class="form-group">
+                <label id="lbl-name" for="staff-name">Name of Staff *</label>
+                <input type="text" id="staff-name" required>
+            </div>
+            <div class="form-group">
+                <label id="lbl-desig" for="staff-desig">Designation of Staff *</label>
+                <input type="text" id="staff-desig" required>
+            </div>
+            <div class="form-group">
+                <label id="lbl-station" for="staff-station">Station of Staff *</label>
+                <input type="text" id="staff-station" required>
+            </div>
+            <button type="submit" class="action-btn" id="reg-submit-btn">Start 30-Minute Quiz</button>
+        </form>
+    </div>
+
+    <!-- PAGE 3: QUIZ TESTING ACTIVE -->
+    <div id="quiz-page" class="hidden">
+        <div class="header">
+            <h3 id="exam-terminal-title">Safety Quiz 2026-27</h3>
+            <div class="timer" id="timer">Time Left: 30:00</div>
+        </div>
+        <div class="question" id="question">Loading question...</div>
+        <ul class="options" id="options"></ul>
+        <button class="action-btn" id="next-button" style="display:none;">Next Question</button>
+    </div>
+
+    <!-- PAGE 4: END THANK YOU PAGE -->
+    <div id="end-page" class="hidden">
+        <img class="railway-logo" src="https://upload.wikimedia.org/wikipedia/en/b/be/Indian_Railways.png" alt="Indian Railways Logo">
+        <h1 id="thank-you-title">Thank You!</h1>
+        <div class="division-text" id="end-sub">Operating Department | Firozpur Division</div>
+        <div id="score-summary" style="font-size: 1.2rem; margin: 20px 0; color: #333;"></div>
+        <button class="action-btn" id="finish-btn">Finish & Back to Home</button>
+    </div>
+
+    <!-- PAGE 5: ADMIN DASHBOARD -->
+    <div id="admin-page" class="hidden">
+        <img class="railway-logo" src="https://upload.wikimedia.org/wikipedia/en/b/be/Indian_Railways.png" alt="Indian Railways Logo">
+        <h2>Master Records Dashboard</h2>
+        <div class="division-text">Safety Quiz Competition 2026-27 Results</div>
+        
+        <button class="action-btn" id="download-master-btn" style="background-color: #28a745; margin-bottom: 10px;">Download Master Excel (CSV)</button>
+        <button class="action-btn" id="clear-records-btn" style="background-color: #dc3545; margin-bottom: 10px;">Clear All Records</button>
+        
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date & Time</th>
+                        <th>Name</th>
+                        <th>Designation</th>
+                        <th>Station</th>
+                        <th>Score</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="admin-table-body"></tbody>
+            </table>
+        </div>
+        
+        <button class="action-btn" id="exit-admin-btn" style="background-color: #6c757d;">Log Out Dashboard</button>
+    </div>
+
+</div>
+
+<script>
+    // Global Multi-Language Transliteration Asset Setup
+    let currentLang = 'en';
+    
+    const uiLabels = {
+        en: {
+            mainTitle: "Safety Quiz Competition 2026-27",
+            mainSub: "Operating Department | Firozpur Division",
+            startBtn: "Proceed to Registration",
+            adminBtn: "Admin Dashboard (Password Protected)",
+            regTitle: "Staff Registration",
+            regSub: "All fields are mandatory to start the 30-min exam",
+            lblName: "Name of Staff *",
+            lblDesig: "Designation of Staff *",
+            lblStation: "Station of Staff *",
+            phName: "Enter full name",
+            phDesig: "e.g. PM-A, SM, TI, Guard",
+            phStation: "Enter Station Code (e.g., FZR, LDH, JUC)",
+            regSubmit: "Start 30-Minute Quiz",
+            examTitle: "Safety Quiz 2026-27",
+            timeLeft: "Time Left",
+            nextBtn: "Next Question",
+            thankYou: "Thank You!",
+            finishBtn: "Finish & Back to Home",
+            msgCompleted: "Well Done",
+            msgTimeout: "Time Limit Reached",
+            msgRecorded: "Your exam data has been safely recorded.",
+            msgScore: "Score",
+            msgOutOf: "out of",
+            msgStatus: "Status"
+        },
+        hi: {
+            mainTitle: "सुरक्षा प्रश्नोत्तरी प्रतियोगिता 2026-27",
+            mainSub: "परिचालन विभाग | फिरोजपुर मंडल",
+            startBtn: "पंजीकरण के लिए आगे बढ़ें",
+            adminBtn: "एडमिन डैशबोर्ड (पासवर्ड सुरक्षित)",
+            regTitle: "कर्मचारी पंजीकरण",
+            regSub: "30 मिनट की परीक्षा शुरू करने के लिए सभी फ़ील्ड अनिवार्य हैं",
+            lblName: "कर्मचारी का नाम *",
+            lblDesig: "कर्मचारी का पदनाम *",
+            lblStation: "कर्मचारी का स्टेशन *",
+            phName: "पूरा नाम दर्ज करें",
+            phDesig: "जैसे: PM-A, SM, TI, Guard",
+            phStation: "स्टेशन कोड दर्ज करें (जैसे: FZR, LDH, JUC)",
+            regSubmit: "30 मिनट की प्रश्नोत्तरी शुरू करें",
+            examTitle: "सुरक्षा प्रश्नोत्तरी 2026-27",
+            timeLeft: "शेष समय",
+            nextBtn: "अगला प्रश्न",
+            thankYou: "धन्यवाद!",
+            finishBtn: "समाप्त करें और होम पेज पर जाएं",
+            msgCompleted: "बहुत बढ़िया",
+            msgTimeout: "समय सीमा समाप्त",
+            msgRecorded: "आपका परीक्षा डेटा सुरक्षित रूप से रिकॉर्ड कर लिया गया है।",
+            msgScore: "अंक",
+            msgOutOf: "में से",
+            msgStatus: "स्थिति"
+        }
+    };
+
+    const quizData = [
+        {
+            question: {
+                en: "“KAVACH” system introduced by Indian Railways is an ___ ?",
+                hi: "भारतीय रेल द्वारा शुरू की गई “कवच” प्रणाली एक ___ है?"
+            },
+            a: { en: "Automatic passenger protection system", hi: "स्वचालित यात्री सुरक्षा प्रणाली" },
+            b: { en: "Automatic Train Protection System", hi: "स्वचालित ट्रेन सुरक्षा प्रणाली" },
+            c: { en: "Automatic crossing system", hi: "स्वचालित क्रॉसिंग प्रणाली" },
+            d: { en: "System to increase the speed of trains", hi: "ट्रेनों की गति बढ़ाने की प्रणाली" },
+            correct: "b"
+        },
+        {
+            question: {
+                en: " In Firozpur Division, in how many locations is IBS available?",
+                hi: " फिरोज़पुर मंडल में, कितने स्थानों पर IBS उपलब्ध है?"
+            },
+            a: { en: "4", hi: "4" },
+            b: { en: "2", hi: "2" },
+            c: { en: "1", hi: "1" },
+            d: { en: "3", hi: "3" },
+            correct: "b"
+        },
+        {
+            question: {
+                en: "What is the full form of “MEMU” train?",
+                hi: "“MEMU” train का पूरा रूप क्या है?"
+            },
+            a: { en: "Mainline Electric Multiple Unit", hi: "Mainline Electric Multiple Unit" },
+            b: { en: "Mechanical Electric Motor Unit ", hi: "Mechanical Electric Motor Unit" },
+            c: { en: "Multi Electric Motor Utility", hi: "Multi Electric Motor Utility" },
+            d: { en: "Medium Electric Motor Unit", hi: "Medium Electric Motor Unit" },
+            correct: "b"
+        }
+    ];
+
+    let currentQuiz = 0;
+    let score = 0;
+    let totalSecondsLeft = 30 * 60; 
+    let examTimerInterval;
+    let pDetails = { name: "", designation: "", station: "" };
+    let isExamSubmitted = false;
+    let submissionStatus = "Completed";
+    let selectedAnswer = null;
+
+    // Elements
+    let startPage, regPage, quizPage, endPage, adminPage;
+    let quizForm, questionEl, optionsContainer, nextBtn, timerEl, scoreSummaryEl, adminTableBody;
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const ADMIN_PASSWORD = "Operating@123"; 
+
+        startPage = document.getElementById('start-page');
+        regPage = document.getElementById('reg-page');
+        quizPage = document.getElementById('quiz-page');
+        endPage = document.getElementById('end-page');
+        adminPage = document.getElementById('admin-page');
+        
+        quizForm = document.getElementById('quiz-form');
+        questionEl = document.getElementById('question');
+        optionsContainer = document.getElementById('options');
+        nextBtn = document.getElementById('next-button');
+        timerEl = document.getElementById('timer');
+        scoreSummaryEl = document.getElementById('score-summary');
+        adminTableBody = document.getElementById('admin-table-body');
+
+        // Apply placeholders dynamically
+        applyLanguageStrings();
+
+        document.getElementById('start-btn').addEventListener('click', () => {
+            startPage.classList.add('hidden');
+            regPage.classList.remove('hidden');
+        });
+
+        document.getElementById('go-admin-btn').addEventListener('click', () => {
+            const userInput = prompt("Enter Administration Security Password:");
+            if (userInput === ADMIN_PASSWORD) {
+                startPage.classList.add('hidden');
+                document.getElementById('lang-switcher').classList.add('hidden'); // Hide language toggle in admin view
+                adminPage.classList.remove('hidden');
+                loadAdminRecords();
+            } else if (userInput !== null) {
+                alert("Access Denied: Invalid Security Password.");
+            }
+        });
+
+        document.getElementById('exit-admin-btn').addEventListener('click', () => {
+            adminPage.classList.add('hidden');
+            document.getElementById('lang-switcher').classList.remove('hidden');
+            startPage.classList.remove('hidden');
+        });
+
+        quizForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            pDetails.name = document.getElementById('staff-name').value.trim();
+            pDetails.designation = document.getElementById('staff-desig').value.trim();
+            pDetails.station = document.getElementById('staff-station').value.trim();
+            
+            regPage.classList.add('hidden');
+            quizPage.classList.remove('hidden');
+            
+            startGlobalExamTimer();
+            loadQuiz();
+        });
+
+        nextBtn.addEventListener('click', nextQuestion);
+        
+        document.getElementById('finish-btn').addEventListener('click', function() {
+            resetQuizStateToHome();
+        });
+
+        document.getElementById('download-master-btn').addEventListener('click', downloadMasterCSV);
+        
+        document.getElementById('clear-records-btn').addEventListener('click', function() {
+            if(confirm("Are you absolutely sure you want to permanently delete all recorded staff results?")) {
+                localStorage.removeItem('railway_quiz_results');
+                loadAdminRecords();
+            }
+        });
+    });
+
+    function switchLanguage(lang) {
+        currentLang = lang;
+        document.getElementById('lang-en-btn').classList.toggle('active', lang === 'en');
+        document.getElementById('lang-hi-btn').classList.toggle('active', lang === 'hi');
+        
+        applyLanguageStrings();
+        
+        // Mid-Quiz Translation Support
+        if (quizPage && !quizPage.classList.contains('hidden')) {
+            updateQuizLanguageOnly();
+        }
+    }
+
+    function applyLanguageStrings() {
+        const labels = uiLabels[currentLang];
+        
+        // Home Screen Translation
+        document.getElementById('main-title').innerText = labels.mainTitle;
+        document.getElementById('main-sub').innerText = labels.mainSub;
+        document.getElementById('start-btn').innerText = labels.startBtn;
+        document.getElementById('go-admin-btn').innerText = labels.adminBtn;
+        
+        // Registration Screen Translation
+        document.getElementById('reg-title').innerText = labels.regTitle;
+        document.getElementById('reg-sub').innerText = labels.regSub;
+        document.getElementById('lbl-name').innerText = labels.lblName;
+        document.getElementById('lbl-desig').innerText = labels.lblDesig;
+        document.getElementById('lbl-station').innerText = labels.lblStation;
+        
+        document.getElementById('staff-name').placeholder = labels.phName;
+        document.getElementById('staff-desig').placeholder = labels.phDesig;
+        document.getElementById('staff-station').placeholder = labels.phStation;
+        document.getElementById('reg-submit-btn').innerText = labels.regSubmit;
+        
+        // Active Quiz Static Labels
+        document.getElementById('exam-terminal-title').innerText = labels.examTitle;
+        nextBtn.innerText = labels.nextBtn;
+        updateTimerDisplay();
+
+        // End Screen Translation
+        document.getElementById('thank-you-title').innerText = labels.thankYou;
+        document.getElementById('end-sub').innerText = labels.mainSub;
+        document.getElementById('finish-btn').innerText = labels.finishBtn;
+        
+        if (isExamSubmitted) {
+            renderFinalScoreSummary();
+        }
+    }
+
+    function startGlobalExamTimer() {
+        updateTimerDisplay();
+        
+        examTimerInterval = setInterval(() => {
+            totalSecondsLeft--;
+            updateTimerDisplay();
+            
+            if (totalSecondsLeft <= 0) {
+                clearInterval(examTimerInterval);
+                submissionStatus = "Timeout Auto-Submit";
+                saveAndShowResults();
+            }
+        }, 1000);
+    }
+
+    function updateTimerDisplay() {
+        if (!timerEl) return;
+        const minutes = Math.floor(totalSecondsLeft / 60);
+        const seconds = totalSecondsLeft % 60;
+        const paddedMinutes = minutes.toString().padStart(2, '0');
+        const paddedSeconds = seconds.toString().padStart(2, '0');
+        timerEl.innerText = `${uiLabels[currentLang].timeLeft}: ${paddedMinutes}:${paddedSeconds}`;
+    }
+
+    function loadQuiz() {
+        if (isExamSubmitted) return;
+
+        if (currentQuiz >= quizData.length) {
+            clearInterval(examTimerInterval);
+            saveAndShowResults();
+            return;
+        }
+
+        nextBtn.style.display = 'none';
+        selectedAnswer = null;
+        updateQuizLanguageOnly();
+    }
+
+    // Handles the language updates of option strings dynamically without breaking selection context
+    function updateQuizLanguageOnly() {
+        if (currentQuiz >= quizData.length) return;
+        
+        const currentQuizData = quizData[currentQuiz];
+        questionEl.innerText = currentQuizData.question[currentLang];
+        optionsContainer.innerHTML = '';
+        
+        ['a', 'b', 'c', 'd'].forEach(letter => {
+            const li = document.createElement('li');
+            const button = document.createElement('button');
+            button.innerText = currentQuizData[letter][currentLang];
+            button.setAttribute('data-ans', letter);
+            
+            if(selectedAnswer !== null) {
+                button.disabled = true;
+                if(selectedAnswer === letter) {
+                    button.classList.add('selected');
+                }
+            } else {
+                button.addEventListener('click', () => selectAnswer(button, letter));
+            }
+            
+            li.appendChild(button);
+            optionsContainer.appendChild(li);
+        });
+    }
+
+    function selectAnswer(selectedButton, chosenLetter) {
+        selectedAnswer = chosenLetter;
+        const buttons = optionsContainer.getElementsByTagName('button');
+        for (let btn of buttons) {
+            btn.classList.remove('selected');
+            btn.disabled = true; 
+        }
+        selectedButton.classList.add('selected');
+        
+        if (chosenLetter === quizData[currentQuiz].correct) { 
+            score++; 
+        }
+        
+        nextBtn.style.display = 'block';
+    }
+
+    function nextQuestion() {
+        currentQuiz++;
+        loadQuiz();
+    }
+
+    function saveAndShowResults() {
+        if (isExamSubmitted) return; 
+        isExamSubmitted = true;
+        
+        clearInterval(examTimerInterval);
+
+        const now = new Date();
+        const localizedTimestamp = now.toLocaleDateString() + " " + now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', second:'2-digit'});
+
+        const record = {
+            timestamp: localizedTimestamp,
+            name: pDetails.name,
+            designation: pDetails.designation,
+            station: pDetails.station,
+            score: `${score}/${quizData.length}`,
+            status: submissionStatus
+        };
+
+        let existingRecords = JSON.parse(localStorage.getItem('railway_quiz_results')) || [];
+        existingRecords.push(record);
+        localStorage.setItem('railway_quiz_results', JSON.stringify(existingRecords));
+
+        quizPage.classList.add('hidden');
+        endPage.classList.remove('hidden');
+        
+        renderFinalScoreSummary();
+    }
+
+    function renderFinalScoreSummary() {
+        const labels = uiLabels[currentLang];
+        let messageHeader = submissionStatus === "Completed" ? labels.msgCompleted : labels.msgTimeout;
+        
+        scoreSummaryEl.innerHTML = `
+            ${messageHeader}, <strong>${pDetails.name}</strong>!<br>
+            ${labels.msgRecorded}<br>
+            ${labels.msgScore}: <strong>${score} ${labels.msgOutOf} ${quizData.length}</strong><br>
+            <small style='color: #777;'>${labels.msgStatus}: ${submissionStatus}</small>
+        `;
+    }
+
+    function resetQuizStateToHome() {
+        currentQuiz = 0;
+        score = 0;
+        totalSecondsLeft = 30 * 60;
+        isExamSubmitted = false;
+        submissionStatus = "Completed";
+        pDetails = { name: "", designation: "", station: "" };
+        selectedAnswer = null;
+        
+        quizForm.reset();
+        switchLanguage('en'); // Defaults back to English on clean start
+        
+        endPage.classList.add('hidden');
+        quizPage.classList.add('hidden');
+        regPage.classList.add('hidden');
+        adminPage.classList.add('hidden');
+        startPage.classList.remove('hidden');
+    }
+
+    function loadAdminRecords() {
+        let existingRecords = JSON.parse(localStorage.getItem('railway_quiz_results')) || [];
+        adminTableBody.innerHTML = '';
+
+        if(existingRecords.length === 0) {
+            adminTableBody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:#777;">No staff records found yet.</td></tr>`;
+            return;
+        }
+
+        existingRecords.forEach(rec => {
+            const tr = document.createElement('tr');
+            const currentStatus = rec.status || "Completed"; 
+            const currentTimestamp = rec.timestamp || "N/A";
+            
+            tr.innerHTML = `
+                <td>${currentTimestamp}</td>
+                <td>${rec.name}</td>
+                <td>${rec.designation}</td>
+                <td>${rec.station}</td>
+                <td><strong>${rec.score}</strong></td>
+                <td><em>${currentStatus}</em></td>
+            `;
+            adminTableBody.appendChild(tr);
+        });
+    }
+
+    function downloadMasterCSV() {
+        let existingRecords = JSON.parse(localStorage.getItem('railway_quiz_results')) || [];
+        if(existingRecords.length === 0) {
+            alert("No records to export yet!");
+            return;
+        }
+
+        let csvContent = "data:text/csv;charset=utf-8,\uFEFF"; // Added BOM for proper Hindi characters support inside Excel Excel
+        csvContent += "Date & Time Completed,Staff Name,Designation,Station Code,Score Obtained,Submission Status\n";
+
+        existingRecords.forEach(rec => {
+            const currentStatus = rec.status || "Completed";
+            const currentTimestamp = rec.timestamp || "N/A";
+            csvContent += `"${currentTimestamp}","${rec.name}","${rec.designation}","${rec.station}","${rec.score}","${currentStatus}"\n`;
+        });
+
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "Safety_Quiz_Competition_2026-27_Results.csv");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+</script>
+
+</body>
+</html>
