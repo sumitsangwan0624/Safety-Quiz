@@ -120,6 +120,7 @@
             text-align: left;
             font-weight: bold;
             color: #222;
+            white-space: pre-line;
         }
         .options {
             list-style-type: none;
@@ -293,7 +294,6 @@
 </div>
 
 <script>
-    // Global Multi-Language Transliteration Asset Setup
     let currentLang = 'en';
     
     const uiLabels = {
@@ -393,7 +393,7 @@
             a: { en: "180 trains", hi: "180 ट्रेने" },
             b: { en: "144 trains", hi: "144 ट्रेने" },
             c: { en: "96 trains", hi: "96 ट्रेने" },
-            d: { en: "Data is not sufficient", hi: "डाटा प्रयाप्त नहीं है" },
+            d: { en: "data is not sufficient", hi: "डाटा प्रयाप्त नहीं है" },
             correct: "b"
         },
         {
@@ -481,7 +481,7 @@
             a: { en: "24 months", hi: "24 माह" },
             b: { en: "20 months", hi: "20 माह" },
             c: { en: "18 months", hi: "18 माह" },
-            d: { en: "12 months", hi: "12 माह" },
+            d: { en: "12 month", hi: "12 माह" },
             correct: "d"
         },
         {
@@ -497,7 +497,7 @@
         },
         {
             question: {
-                en: "Q.14 Official Languages Act, 1963. According to Section 3(3), what should be the form of administrative reports laid before Parliament?",
+                en: "Q.14 Official Languages Act, 1963.According to Section 3(3), what should be the form of administrative reports laid before Parliament?",
                 hi: "Q.14 राजभाषा अधिनियम, 1963. धारा 3(3) के अनुसार, संसद में रखे जाने वाले प्रशासनिक रिपोर्टों का रूप क्या होगा?"
             },
             a: { en: "Only English", hi: "केवल अंग्रेज़ी" },
@@ -523,7 +523,7 @@
                 hi: "Q.16 BLCA/BLCB/BLLA/BLLB' किसके लिए उपयोग किए जाते हैं?"
             },
             a: { en: "Tank loading", hi: "टैंक लोडिंग" },
-            b: { en: "Container Loading", hi: "कंटेनर लोडिंग" },
+            b: { en: "container Loading", hi: "कंटेनर लोडिंग" },
             c: { en: "Coal Loading", hi: "कोयला लोडिंग" },
             d: { en: "Steel Loading", hi: "स्टील लोडिंग" },
             correct: "b"
@@ -601,7 +601,7 @@
             },
             a: { en: "Only one Line Clear", hi: "केवल एक - लाइन क्लियर" },
             b: { en: "Only one Section Clear", hi: "केवल एक - सेक्शन क्लियर" },
-            c: { en: "Two - one Section Clear and one Line Clear", hi: "दो - एक सेक्शन क्लियर और दूसरा लाइन क्लियर" },
+            c: { en: "Two one Section Clear and one Line Clear", hi: "दो - एक सेक्शन क्लियर और दूसरा लाइन क्लियर" },
             d: { en: "No Private Number required", hi: "कोई भी प्राइवेट नंबर आवश्यक नहीं" },
             correct: "c"
         },
@@ -613,7 +613,7 @@
             a: { en: "SI-24", hi: "SI-24" },
             b: { en: "SI-4", hi: "SI-4" },
             c: { en: "TSR", hi: "TSR" },
-            d: { en: "No recording is necessary", hi: "कोई रिकॉर्डिंग आवश्यक नहीं है" },
+            d: { en: "no recording is necessary", hi: "कोई रिकॉर्डिंग आवश्यक नहीं है" },
             correct: "a"
         },
         {
@@ -655,7 +655,7 @@
                 hi: "Q.102 जब DLBI/UFSBI विफल हो जाता है, उस स्थिति में कौन-सा प्रस्थान प्राधिकार प्रयोग किया जाएगा?"
             },
             a: { en: "T/369(3b)", hi: "T/369(3b)" },
-            b: { en: "T/369(3b) + Private number", hi: "T/369(3b)+Private number/प्राइवेट नंबर" },
+            b: { en: "T/369(3b)+Private number", hi: "T/369(3b)+Private number/प्राइवेट नंबर" },
             c: { en: "T/511", hi: "T/511" },
             d: { en: "T/512", hi: "T/512" },
             correct: "b"
@@ -665,9 +665,9 @@
                 en: "Q.103 What exemption is provided for cabins of large yards with shunting activities?",
                 hi: "Q.103 बड़े यार्ड में शंटिंग गतिविधियों वाले कैबिन्स के लिए क्या छूट दी गई है?"
             },
-            a: { en: "Exchanging All Right Signal is not necessary", hi: "ऑल राइट सिग्नल का आदान-प्रदान आवश्यक नहीं है" },
-            b: { en: "Exchanging All Right Signal is necessary", hi: "ऑल राइट सिग्नल का आदान-प्रदान आवश्यक है" },
-            c: { en: "Exchanging All Right Signal is not necessary but must watch the train", hi: "ऑल राइट सिग्नल का आदान-प्रदान आवश्यक नहीं है लेकिन ट्रेन पर नजर रखनी है" },
+            a: { en: "exchanging All Right Signal is not necessary", hi: "ऑल राइट सिग्नल का आदान-प्रदान आवश्यक नहीं है" },
+            b: { en: "exchanging All Right Signal is necessary", hi: "ऑल राइट सिग्नल का आदान-प्रदान आवश्यक है" },
+            c: { en: "exchanging All Right Signal is not necessary but must watch the train", hi: "ऑल राइट सिग्नल का आदान-प्रदान आवश्यक नहीं है लेकिन ट्रेन पर नजर रखनी है" },
             d: { en: "Merely placing flag/lamp in view", hi: "सिर्फ झंडा/लैम्प नजर में रखना" },
             correct: "c"
         },
@@ -677,7 +677,7 @@
                 hi: "Q.104 यदि किसी ज़ोनल रेलवे को स्थानीय परिस्थितियों के अनुसार नियम बनाने हों, तो उसे कौन-से नियम बनाने होंगे, और वे किस प्राधिकारी द्वारा बनाए जाते हैं?"
             },
             a: { en: "GR - By Railway Board", hi: "GR - रेलवे बोर्ड द्वारा" },
-            b: { en: "SR - By PCOM", hi: "SR - पी.सी.ओ.एम द्वारा" },
+            b: { en: "SR- By PCOM", hi: "SR- पी.सी.०.एम द्वारा" },
             c: { en: "Approved Special Instructions - By CRS", hi: "विशेष अनुमोदित निर्देश- सी.आर.एस. द्वारा" },
             d: { en: "Special Instructions - By Railway Board", hi: "विशेष निर्देश - रेलवे बोर्ड द्वारा" },
             correct: "b"
@@ -731,7 +731,7 @@
                 en: "Q.109 What is the main purpose of isolation?",
                 hi: "Q.109 आइसोलेशन का मुख्य उद्देश्य क्या है?"
             },
-            a: { en: "To safely separate one line from another", hi: "एक लाइन को दूसरी लाइन से सुरक्षित रूप से अलग करना" },
+            a: { en: "To safely separate one line from another", hi: "एक line को दूसरी line से सुरक्षित रूप से अलग करना" },
             b: { en: "Connecting loop line to main line", hi: "मुख्य लाइन से लूप लाइन को जोड़ना" },
             c: { en: "To store vehicles in yard", hi: "यार्ड में गाड़ियों को स्टोर करना" },
             d: { en: "Issuing caution order", hi: "कौसन आर्डर जारी करना" },
@@ -759,7 +759,6 @@
     let submissionStatus = "Completed";
     let selectedAnswer = null;
 
-    // Elements
     let startPage, regPage, quizPage, endPage, adminPage;
     let quizForm, questionEl, optionsContainer, nextBtn, timerEl, scoreSummaryEl, adminTableBody;
 
@@ -780,7 +779,6 @@
         scoreSummaryEl = document.getElementById('score-summary');
         adminTableBody = document.getElementById('admin-table-body');
 
-        // Apply placeholders dynamically
         applyLanguageStrings();
 
         document.getElementById('start-btn').addEventListener('click', () => {
@@ -792,7 +790,7 @@
             const userInput = prompt("Enter Administration Security Password:");
             if (userInput === ADMIN_PASSWORD) {
                 startPage.classList.add('hidden');
-                document.getElementById('lang-switcher').classList.add('hidden'); // Hide language toggle in admin view
+                document.getElementById('lang-switcher').classList.add('hidden'); 
                 adminPage.classList.remove('hidden');
                 loadAdminRecords();
             } else if (userInput !== null) {
@@ -842,7 +840,6 @@
         
         applyLanguageStrings();
         
-        // Mid-Quiz Translation Support
         if (quizPage && !quizPage.classList.contains('hidden')) {
             updateQuizLanguageOnly();
         }
@@ -851,13 +848,11 @@
     function applyLanguageStrings() {
         const labels = uiLabels[currentLang];
         
-        // Home Screen Translation
         document.getElementById('main-title').innerText = labels.mainTitle;
         document.getElementById('main-sub').innerText = labels.mainSub;
         document.getElementById('start-btn').innerText = labels.startBtn;
         document.getElementById('go-admin-btn').innerText = labels.adminBtn;
         
-        // Registration Screen Translation
         document.getElementById('reg-title').innerText = labels.regTitle;
         document.getElementById('reg-sub').innerText = labels.regSub;
         document.getElementById('lbl-name').innerText = labels.lblName;
@@ -869,12 +864,10 @@
         document.getElementById('staff-station').placeholder = labels.phStation;
         document.getElementById('reg-submit-btn').innerText = labels.regSubmit;
         
-        // Active Quiz Static Labels
         document.getElementById('exam-terminal-title').innerText = labels.examTitle;
         nextBtn.innerText = labels.nextBtn;
         updateTimerDisplay();
 
-        // End Screen Translation
         document.getElementById('thank-you-title').innerText = labels.thankYou;
         document.getElementById('end-sub').innerText = labels.mainSub;
         document.getElementById('finish-btn').innerText = labels.finishBtn;
@@ -1068,7 +1061,8 @@
         existingRecords.forEach(rec => {
             const currentStatus = rec.status || "Completed";
             const currentTimestamp = rec.timestamp || "N/A";
-            csvContent += `"${currentTimestamp}","${rec.name}","${rec.designation}","${rec.station}","${rec.score}","${currentStatus}"\n`;
+            // The '\t' tab character forces Excel to treat the text fields without interpreting date formats
+            csvContent += `"${currentTimestamp}","${rec.name}","${rec.designation}","${rec.station}","\t${rec.score}","${currentStatus}"\n`;
         });
 
         const encodedUri = encodeURI(csvContent);
